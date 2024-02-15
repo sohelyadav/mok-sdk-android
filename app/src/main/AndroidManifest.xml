@@ -32,19 +32,13 @@
         </activity>
 
         <!-- DEV-->
-<!--        <meta-data-->
-<!--            android:name="MOK_READ_KEY"-->
-<!--            android:value="r_iOjxKAbysiY4dRAecAnNO" />-->
-<!--        <meta-data-->
-<!--            android:name="MOK_WRITE_KEY"-->
-<!--            android:value="w_lP7D_ESqWu8ijfrz88j5D" />-->
-
         <meta-data
             android:name="MOK_READ_KEY"
-            android:value="r_R7ck_2YlHX-_g_e54zJUN" />
+            android:value="r_iOjxKAbysiY4dRAecAnNO" />
         <meta-data
             android:name="MOK_WRITE_KEY"
-            android:value="w_gokdfQvLiVyLoVEciZ9qA" />
+            android:value="w_lP7D_ESqWu8ijfrz88j5D" />
+
 
         <meta-data
             android:name="MOK_SMALL_NOTIFICATION_ICON"
