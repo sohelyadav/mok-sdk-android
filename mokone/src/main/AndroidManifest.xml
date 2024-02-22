@@ -19,7 +19,7 @@
             android:name=".pip.ui.PiPActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:exported="true"
-            android:launchMode="singleInstance"
+            android:launchMode="standard"
             android:supportsPictureInPicture="true"
             android:theme="@style/FullScreenWebViewTheme"
             tools:targetApi="n" />
