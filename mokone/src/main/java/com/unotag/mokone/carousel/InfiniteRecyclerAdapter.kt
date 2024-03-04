@@ -21,7 +21,7 @@ class InfiniteRecyclerAdapter(originalList: List<CarouselContent>) : RecyclerVie
 
             Glide.with(itemView.context)
                 .load(item.url)
-                .centerCrop()
+                .centerInside()
                 .into(carouselImageView)
         }
 
