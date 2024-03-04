@@ -17,6 +17,12 @@ import com.unotag.mokone.pushNotification.call.ui.IncomingCallActivity
 
 object CallNotificationHandler {
 
+    // Add other call notification utility functions as needed
+
+    const val ACTION_ACCEPT_CALL = "ACTION_ACCEPT_CALL"
+    const val ACTION_DECLINE_CALL = "ACTION_DECLINE_CALL"
+
+
     // Create a new call, setting the user as the caller.
     @RequiresApi(Build.VERSION_CODES.P)
     private val incomingCaller = Person.Builder()
@@ -34,14 +40,18 @@ object CallNotificationHandler {
     ) {
         // Intent to launch IncomingCallActivity
         val fullScreenIntent = Intent(context, IncomingCallActivity::class.java)
-        val fullScreenPendingIntent = PendingIntent.getActivity(context, 0, fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        val fullScreenPendingIntent = PendingIntent.getActivity(context, 0,
+            fullScreenIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
         val notificationBuilder = Notification.Builder(context, channelId)
             .setContentIntent(contentIntent)
             .setFullScreenIntent(fullScreenPendingIntent, true)
             .setSmallIcon(NotificationRenderer.getSmallNotificationIcon())
             .setStyle(
-                Notification.CallStyle.forIncomingCall(incomingCaller, getCallActionIntent(context, ACTION_DECLINE_CALL), getCallActionIntent(context, ACTION_ACCEPT_CALL))
+                Notification.CallStyle.forIncomingCall(incomingCaller,
+                    getCallActionIntent(context, ACTION_DECLINE_CALL),
+                    getCallActionIntent(context, ACTION_ACCEPT_CALL))
             )
             .addPerson(incomingCaller)
             .build()
@@ -120,8 +130,4 @@ object CallNotificationHandler {
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
     }
 
-    // Add other call notification utility functions as needed
-
-    const val ACTION_ACCEPT_CALL = "ACTION_ACCEPT_CALL"
-    const val ACTION_DECLINE_CALL = "ACTION_DECLINE_CALL"
 }

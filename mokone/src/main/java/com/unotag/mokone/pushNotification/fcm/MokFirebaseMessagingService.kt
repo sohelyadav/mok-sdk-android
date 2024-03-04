@@ -16,10 +16,8 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.firebase.messaging.ktx.messaging
-import com.google.gson.Gson
 import com.unotag.mokone.MokSDK
 import com.unotag.mokone.R
-import com.unotag.mokone.inAppMessage.data.PopupConfigs
 import com.unotag.mokone.pushNotification.NotificationRenderer
 import com.unotag.mokone.pushNotification.call.CallNotificationHandler
 import com.unotag.mokone.utils.MokLogger
@@ -47,34 +45,43 @@ class MokFirebaseMessagingService : FirebaseMessagingService() {
             val title = remoteMessage.data["title"]
             val body = remoteMessage.data["body"]
 
-            if (title.isNullOrEmpty()) {
-                MokLogger.log(MokLogger.LogLevel.DEBUG, "MokFirebaseMessagingService type : in app")
-
-                val popupConfigs =
-                    Gson().fromJson(remoteMessage.data["popup_configs"], PopupConfigs::class.java)
-                val getInAppMsgData = popupConfigs?.getInAppMsgData ?: false
-
-                if (getInAppMsgData) {
-                    handleInAppNotification()
-                }
-
-            } else if (remoteMessage.data.containsKey("image")) {
-                MokLogger.log(MokLogger.LogLevel.DEBUG, "MokFirebaseMessagingService type : image")
-                val image = remoteMessage.data["image"]
-                val bigIcon = remoteMessage.data["icon"]
-                val bigPicture = getBitmapFromUrl(image)
-                val bigLargeIcon: Bitmap? = getBitmapFromUrl(bigIcon)
-                sendNotification(title, body, bigPicture, bigLargeIcon)
-            } else if (remoteMessage.data.containsKey("call")) {
-                   MokLogger.log(MokLogger.LogLevel.DEBUG, "MokFirebaseMessagingService type : call")
-                val requestCode = 0
-                val launchIntent = getLaunchIntent()
+            MokLogger.log(MokLogger.LogLevel.DEBUG, "MokFirebaseMessagingService type : call")
+            val requestCode = 0
+            val launchIntent = getLaunchIntent()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 CallNotificationHandler.buildCallNotificationAboveAPI31(this,"test", getString(R.string.call_notification_channel_id), getPendingIntent(launchIntent, requestCode) )
-            } else {
-                MokLogger.log(MokLogger.LogLevel.DEBUG, "MokFirebaseMessagingService type : default")
-                sendNotification(title, body)
-                setNotificationSliderData("test", "body", imagesList)
             }
+
+//            if (title.isNullOrEmpty()) {
+//                MokLogger.log(MokLogger.LogLevel.DEBUG, "MokFirebaseMessagingService type : in app")
+//
+//                val popupConfigs =
+//                    Gson().fromJson(remoteMessage.data["popup_configs"], PopupConfigs::class.java)
+//                val getInAppMsgData = popupConfigs?.getInAppMsgData ?: false
+//
+//                if (getInAppMsgData) {
+//                    handleInAppNotification()
+//                }
+//
+//            } else if (remoteMessage.data.containsKey("image")) {
+//                MokLogger.log(MokLogger.LogLevel.DEBUG, "MokFirebaseMessagingService type : image")
+//                val image = remoteMessage.data["image"]
+//                val bigIcon = remoteMessage.data["icon"]
+//                val bigPicture = getBitmapFromUrl(image)
+//                val bigLargeIcon: Bitmap? = getBitmapFromUrl(bigIcon)
+//                sendNotification(title, body, bigPicture, bigLargeIcon)
+//            } else if (remoteMessage.data.containsKey("call")) {
+//                   MokLogger.log(MokLogger.LogLevel.DEBUG, "MokFirebaseMessagingService type : call")
+//                val requestCode = 0
+//                val launchIntent = getLaunchIntent()
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//                    CallNotificationHandler.buildCallNotificationAboveAPI31(this,"test", getString(R.string.call_notification_channel_id), getPendingIntent(launchIntent, requestCode) )
+//                }
+//            } else {
+//                MokLogger.log(MokLogger.LogLevel.DEBUG, "MokFirebaseMessagingService type : default")
+//                sendNotification(title, body)
+//                setNotificationSliderData("test", "body", imagesList)
+//            }
         }
     }
 
