@@ -76,13 +76,15 @@ class MokFirebaseMessagingService : FirebaseMessagingService() {
                 setNotificationSliderData("test", "body", imagesList)
             }
         }
-    }
 
-    // Check if message contains a notification payload.
+        // Check if message contains a notification payload.
 //        remoteMessage.notification?.let {
 //            MokLogger.log(MokLogger.LogLevel.DEBUG, "Message Notification Body: ${it.body}")
-//            it.body?.let { body -> sendNotification() }
+//            it.body?.let { body -> sendNotification("test", "test") }
 //        }
+    }
+
+
 
     // [START on_new_token]
     /**

@@ -18,7 +18,7 @@ data class CarouselItem(
 )
 
 data class CarouselContent(
-    val id: Int?,
+    val id: String?,
     val type: String?,
     val url: String?
 )

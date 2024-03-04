@@ -53,10 +53,20 @@ class InAppMessageHandler(private val context: Context, private val userId: Stri
                                     MokLogger.LogLevel.DEBUG,
                                     "Start async task for $inAppMessageId"
                                 )
-                                saveInAppMessageInLocalDb(
-                                    inAppMessageId,
-                                    inAppMessageAsString
-                                ).await()
+
+                                if (inAppMessage?.jsonData?.title.isNullOrEmpty() &&
+                                    inAppMessage?.jsonData?.text.isNullOrEmpty() &&
+                                    inAppMessage?.jsonData?.image.isNullOrEmpty() &&
+                                    inAppMessage?.jsonData?.popupConfigs?.videoUrl.isNullOrEmpty() &&
+                                    inAppMessage?.jsonData?.popupConfigs?.webUrl.isNullOrEmpty()
+                                ) {
+                                    MokLogger.log(MokLogger.LogLevel.DEBUG, "IAM has no data, skip saving in local DB")
+                                } else {
+                                    saveInAppMessageInLocalDb(
+                                        inAppMessageId,
+                                        inAppMessageAsString
+                                    ).await()
+                                }
                                 MokLogger.log(
                                     MokLogger.LogLevel.DEBUG,
                                     "Async task completed for $inAppMessageId"
@@ -271,7 +281,7 @@ class InAppMessageHandler(private val context: Context, private val userId: Stri
                 MokLogger.LogLevel.ERROR, "Error deleting all in-app messages: ${e.message}"
             )
         } finally {
-           // db.close()
+            // db.close()
         }
     }
 
@@ -291,7 +301,7 @@ class InAppMessageHandler(private val context: Context, private val userId: Stri
             MokLogger.log(MokLogger.LogLevel.ERROR, "Error getting IAM count: ${e.message}")
             callback?.invoke(null, e.localizedMessage)
         } finally {
-           // db.close()
+            // db.close()
         }
     }
 

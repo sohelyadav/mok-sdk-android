@@ -7,6 +7,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:120898714011:android:3d19408440799e3c8ac93e",
+        "android_client_info": {
+          "package_name": "com.unomok.mokone_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120898714011-47ulhl0tathgao1hbrc8djcucqtemvva.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOksGIb_4pptt1r9NS_1l1Bv-89mwoyy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120898714011-47ulhl0tathgao1hbrc8djcucqtemvva.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "120898714011-47klcmm48vkpv8onhg7giolqqkbr53mi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.logidots.MokSDKExample"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:120898714011:android:dad4e61fea2897448ac93e",
         "android_client_info": {
           "package_name": "one.mok"
@@ -37,6 +73,13 @@
             {
               "client_id": "120898714011-47ulhl0tathgao1hbrc8djcucqtemvva.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "120898714011-47klcmm48vkpv8onhg7giolqqkbr53mi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.logidots.MokSDKExample"
+              }
             }
           ]
         }

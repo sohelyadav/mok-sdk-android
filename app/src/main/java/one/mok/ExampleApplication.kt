@@ -7,10 +7,10 @@ import com.unotag.mokone.utils.MokLogger
 class ExampleApplication : MokApplication() {
 
     override fun onCreate() {
-        //registerActivityLifecycleCallbacks(this)
+        registerActivityLifecycleCallbacks(this)
         super.onCreate()
         MokSDK.getInstance(applicationContext)
-        MokSDK.initMokSDK(isProdEnv = true, delayMillis = 2000 )
+        MokSDK.initMokSDK(isProdEnv = false, delayMillis = 2000)
         MokLogger.setLogLevel(MokLogger.LogLevel.DEBUG)
     }
 }

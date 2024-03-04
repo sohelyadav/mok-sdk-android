@@ -30,6 +30,9 @@ class CarouselView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
 
+    private var carouselDelay: Int = 0
+
+
     private lateinit var infiniteViewPager: ViewPager2
     private lateinit var infiniteRecyclerAdapter: InfiniteRecyclerAdapter
     private var carouselItemList: MutableList<CarouselContent> = mutableListOf()
@@ -37,11 +40,29 @@ class CarouselView @JvmOverloads constructor(
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
     private var isAutoScrolling = false
 
+
     init {
-        getCarouselContent { result ->
-            handleCarouselResult(result)
+        // Retrieve custom attributes
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CarouselView, defStyleAttr, 0)
+
+        try {
+            // Retrieve values by attribute names
+            carouselDelay = typedArray.getInt(R.styleable.CarouselView_carouselDelay, 0)
+        } finally {
+            typedArray.recycle()
+        }
+        // Now, you can use carouselAttribute1 and carouselAttribute2 as needed
+        MokLogger.log(MokLogger.LogLevel.ERROR,"Carousel Delay time: $carouselDelay")
+
+        visibility = View.GONE
+        coroutineScope.launch {
+            delay(carouselDelay.toLong())
+            getCarouselContent { result ->
+                handleCarouselResult(result)
+            }
         }
     }
+
 
 
     private fun handleCarouselResult(
@@ -93,6 +114,7 @@ class CarouselView @JvmOverloads constructor(
 
         // Check if the carouselItemList is not empty
         if (carouselItemList.isNotEmpty()) {
+            visibility = View.VISIBLE
             val linearLayout = LinearLayout(context)
             val layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,

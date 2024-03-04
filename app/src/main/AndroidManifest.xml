@@ -32,20 +32,20 @@
         </activity>
 
         <!-- DEV-->
-<!--        <meta-data-->
-<!--            android:name="MOK_READ_KEY"-->
-<!--            android:value="r_iOjxKAbysiY4dRAecAnNO" />-->
-<!--        <meta-data-->
-<!--            android:name="MOK_WRITE_KEY"-->
-<!--            android:value="w_lP7D_ESqWu8ijfrz88j5D" />-->
-
-        <!-- RR-->
         <meta-data
             android:name="MOK_READ_KEY"
-            android:value="r_IG5F6qphtpRE8uNZxtaby" />
+            android:value="r_iOjxKAbysiY4dRAecAnNO" />
         <meta-data
             android:name="MOK_WRITE_KEY"
-            android:value="w_d7QPqsH--smEeQSS97HtM" />
+            android:value="w_lP7D_ESqWu8ijfrz88j5D" />
+
+        <!-- RR-->
+<!--        <meta-data-->
+<!--            android:name="MOK_READ_KEY"-->
+<!--            android:value="r_IG5F6qphtpRE8uNZxtaby" />-->
+<!--        <meta-data-->
+<!--            android:name="MOK_WRITE_KEY"-->
+<!--            android:value="w_d7QPqsH&#45;&#45;smEeQSS97HtM" />-->
 
 
         <meta-data
